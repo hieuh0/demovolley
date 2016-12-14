@@ -7,6 +7,8 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
 
+import com.android.volley.toolbox.StringRequest;
+
 import java.util.List;
 
 /**
@@ -16,7 +18,7 @@ import java.util.List;
 public class Custom_Adapter extends BaseAdapter{
     Context context;
     List<SinhVien> list;
-
+    StringRequest stringRequest;
     public Custom_Adapter(Context context,List<SinhVien> list){
 
         this.context = context;
@@ -50,6 +52,8 @@ public class Custom_Adapter extends BaseAdapter{
         id.setText(s.getID()+"");
         ten.setText(s.getTen());
         emai.setText(s.getEmail());
+
+
         return view;
     }
 }

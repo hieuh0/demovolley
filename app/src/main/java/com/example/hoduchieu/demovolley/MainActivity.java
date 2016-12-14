@@ -1,8 +1,10 @@
 package com.example.hoduchieu.demovolley;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
@@ -29,8 +31,8 @@ import java.util.Map;
 public class MainActivity extends AppCompatActivity {
     EditText edtTen,edtMail;
     Button btnGoi;
-    String URL_POST = "http://192.168.1.104/demovolley/post.php";
-    String URL_GET = "http://192.168.1.104/demovolley/getdata.php";
+    String URL_POST = "http://192.168.1.109/demovolley/post.php";
+    String URL_GET = "http://192.168.1.109/demovolley/getdata.php";
     Custom_Adapter adapter;
     List<SinhVien> list = new ArrayList<>();
     ListView listView;
@@ -54,6 +56,16 @@ public class MainActivity extends AppCompatActivity {
         adapter = new Custom_Adapter(getApplication(),list);
         listView.setAdapter(adapter);
         getdata();
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                SinhVien s = list.get(i);
+                //Toast.makeText(getApplication(),s.getID()+"",Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(getApplication(),Info_Activity.class);
+                intent.putExtra("ID",s.getID());
+                startActivity(intent);
+            }
+        });
     }
 
     private void InsertSV(){
